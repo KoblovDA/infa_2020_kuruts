@@ -91,15 +91,10 @@ def print_bird(Xc, Yc, size):
                          [(Xc + dX) * scale, (Yc - dY) * scale], [(Xc + dX / 2) * scale, (Yc - dY * 2 / 2) * scale],
                          [Xc * scale, (Yc - dY / 2) * scale]
                          ])
+birds = [(960, 600, 1), (1185, 621, 1), (1185, 709, 1.05), (991, 778, 1), (1944, 1335, 1.5), (1985, 1206, 0.6), (1700, 1252, 0.8), (1568, 1127, 1.0)]
+for i in birds:
+    print_bird(i[0], i[1], i[2])
 
-print_bird(960, 600, 1)
-print_bird(1185, 621, 1)
-print_bird(1185, 709, 1.05)
-print_bird(991, 778, 1)
-print_bird(1944, 1335, 1.5)
-print_bird(1985, 1206, 0.6)
-print_bird(1700, 1252, 0.8)
-print_bird(1568, 1127, 1.0)
 ###
 
 pygame.display.update()
