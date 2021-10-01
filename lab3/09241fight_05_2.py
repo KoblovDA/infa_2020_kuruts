@@ -74,17 +74,13 @@ pygame.draw.polygon(screen, dark_ground,
                      ])
 
 
-# и finally птички
 
-# 960 600
-
-
-def print_bird(Xc, Yc, size):
-    dY = 50 * size
-    dX = 65 * size
+def print_bird(height, width, Xc, Yc, size, color):
+    dY = height * size
+    dX = width * size
     r = 15 * size
-    pygame.draw.circle(screen, dark_birds, ((Xc - dX) * scale, (Yc - dY) * scale), (r * scale))
-    pygame.draw.polygon(screen, dark_birds,
+    pygame.draw.circle(screen, color, ((Xc - dX) * scale, (Yc - dY) * scale), (r * scale))
+    pygame.draw.polygon(screen, color,
                         [[(Xc - dX + r / 2 ** 0.5) * scale - 1, (Yc - dY - r / 2 ** 0.5) * scale],
                          [(Xc - dX - r / 2 ** 0.5) * scale + 3, (Yc - dY + r / 2 ** 0.5) * scale],
                          [Xc * scale, Yc * scale],
@@ -93,7 +89,7 @@ def print_bird(Xc, Yc, size):
                          ])
 birds = [(960, 600, 1), (1185, 621, 1), (1185, 709, 1.05), (991, 778, 1), (1944, 1335, 1.5), (1985, 1206, 0.6), (1700, 1252, 0.8), (1568, 1127, 1.0)]
 for i in birds:
-    print_bird(i[0], i[1], i[2])
+    print_bird(50, 65, i[0], i[1], i[2], dark_birds)
 
 ###
 
