@@ -75,6 +75,8 @@ ground = [(0, 1666), (0, 857), (302, 937), (531, 1232),
           (813, 1580), (1171, 1637), (1579, 1408),
           (1689, 1463), (2089, 1400), (2500, 1000),
           (2500, 1666)]
+birds = [(960, 600, 1), (1185, 621, 1), (1185, 709, 1.05), (991, 778, 1), (1944, 1335, 1.5), (1985, 1206, 0.6),
+         (1700, 1252, 0.8), (1568, 1127, 1.0)]
 
 background(screen, scale, yellow_sky_up, pink_sky, yellow_sky_middle, pink_ground)
 sun(screen, scale, sun_color, 1192, 345, 144)
@@ -83,10 +85,7 @@ elliptic(screen, scale, orange, [1750, 245, 100, 200], 0, math.pi, 200)
 smart_polygon(screen, scale, red, forest)  # red forest
 elliptic(screen, scale, red, [1450, 687, 600, 550], math.pi / 2, math.pi * 0.9, 200)
 elliptic(screen, scale, red, [60, 660, 400, 900], 0, math.pi * 5 / 6, 383)
-
 smart_polygon(screen, scale, dark_ground, ground)
-birds = [(960, 600, 1), (1185, 621, 1), (1185, 709, 1.05), (991, 778, 1), (1944, 1335, 1.5), (1985, 1206, 0.6),
-         (1700, 1252, 0.8), (1568, 1127, 1.0)]
 for i in birds:
     bird(screen, scale, 50, 65, i[0], i[1], i[2], dark_birds)
 
