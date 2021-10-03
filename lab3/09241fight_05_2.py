@@ -26,7 +26,7 @@ def background(scr, scl, color1, color2, color3, color4):
     rect(scr, color4, [0, 1065 * scl, 2500 * scl, 834 * scl])
 
 
-def print_bird(scr, scl, height, width, x, y, size, color):
+def bird(scr, scl, height, width, x, y, size, color):
     d_y = height * size
     d_x = width * size
     r = 15 * size
@@ -47,33 +47,37 @@ def sun(scr, scl, color, x, y, size):
 
 def smart_polygon(scr, scl, color, points):
     new_points = []
-    for i in points:
-        new_points.append((i[0] * scale, i[1] * scale))
+    for pairs in points:
+        new_points.append((pairs[0] * scl, pairs[1] * scl))
     polygon(scr, color, new_points)
 
 
-background(screen, scale, yellow_sky_up, pink_sky, yellow_sky_middle, pink_ground)
-sun(screen, scale, sun_color, 1192, 345, 144)
 mountains = [(0, 775), (30, 674), (514, 327), (611, 357), (644, 411),
              (653, 419), (958, 625), (1123, 603), (1212, 647), (1331, 531),
              (1450, 552), (1500, 500), (1770, 265), (1868, 309),
              (1980, 415), (2071, 390), (2339, 473), (2325, 471),
              (2500, 520)]
-smart_polygon(screen, scale, orange, mountains)  # mountains
+forest = [(0, 1125), (0, 830), (71, 858), (250, 825),
+          (436, 1068), (546, 885), (723, 979),
+          (807, 750), (1000, 800), (1200, 930),
+          (1430, 876), (1750, 687), (2044, 845), (2153, 755),
+          (2253, 820), (2300, 738), (2407, 743), (2500, 590),
+          (2500, 1071)]
+ground = [(0, 1666), (0, 857), (302, 937), (531, 1232),
+          (813, 1580), (1171, 1637), (1579, 1408),
+          (1689, 1463), (2089, 1400), (2500, 1000),
+          (2500, 1666)]
 
+background(screen, scale, yellow_sky_up, pink_sky, yellow_sky_middle, pink_ground)
+sun(screen, scale, sun_color, 1192, 345, 144)
+smart_polygon(screen, scale, orange, mountains)  # mountains
 arc(screen, orange, [1750 * scale, 245 * scale, 100 * scale, 200 * scale], 0, math.pi, int(200 * scale))
 # тройное повторение с небольшим изменением координат потому что без него какая-то фигня с заливкой
 arc(screen, orange, [1750 * scale + 1, 245 * scale, 100 * scale, 200 * scale], 0, math.pi, int(200 * scale))
 arc(screen, orange, [
     1750 * scale - 1, 245 * scale, 100 * scale, 200 * scale], 0, math.pi, int(200 * scale))
 
-red_forest = [(0, 1125), (0, 830), (71, 858), (250, 825),
-              (436, 1068), (546, 885), (723, 979),
-              (807, 750), (1000, 800), (1200, 930),
-              (1430, 876), (1750, 687), (2044, 845), (2153, 755),
-              (2253, 820), (2300, 738), (2407, 743), (2500, 590),
-              (2500, 1071)]
-smart_polygon(screen, scale, red, red_forest)  # red forest
+smart_polygon(screen, scale, red, forest)  # red forest
 
 arc(screen, red, [1450 * scale, 687 * scale, 600 * scale, 550 * scale], math.pi / 2, math.pi * 0.9,
     int(200 * scale))
@@ -90,17 +94,11 @@ arc(screen, red, [60 * scale + 1, 660 * scale, 400 * scale, 900 * scale], 0, mat
 arc(screen, red, [60 * scale - 1, 660 * scale, 400 * scale, 900 * scale], 0, math.pi * 5 / 6,
     int(383 * scale))
 
-# темная земля на переднем плане
-polygon(screen, dark_ground,
-        [[0, 1666 * scale], [0, 857 * scale], [302 * scale, 937 * scale], [531 * scale, 1232 * scale],
-         [813 * scale, 1580 * scale], [1171 * scale, 1637 * scale], [1579 * scale, 1408 * scale],
-         [1689 * scale, 1463 * scale], [2089 * scale, 1400 * scale], [2500 * scale, 1000 * scale],
-         [2500 * scale, 1666 * scale]
-         ])
+smart_polygon(screen, scale, dark_ground, ground)
 birds = [(960, 600, 1), (1185, 621, 1), (1185, 709, 1.05), (991, 778, 1), (1944, 1335, 1.5), (1985, 1206, 0.6),
          (1700, 1252, 0.8), (1568, 1127, 1.0)]
 for i in birds:
-    print_bird(screen, scale, 50, 65, i[0], i[1], i[2], dark_birds)
+    bird(screen, scale, 50, 65, i[0], i[1], i[2], dark_birds)
 
 pygame.display.update()
 clock = pygame.time.Clock()
