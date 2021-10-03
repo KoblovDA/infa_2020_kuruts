@@ -67,17 +67,13 @@ arc(screen, orange, [1750 * scale + 1, 245 * scale, 100 * scale, 200 * scale], 0
 arc(screen, orange, [
     1750 * scale - 1, 245 * scale, 100 * scale, 200 * scale], 0, math.pi, int(200 * scale))
 
-# красный лес
-polygon(screen, red,
-        [[0, 1125 * scale], [0, 830 * scale], [71 * scale, 858 * scale], [250 * scale, 825 * scale],
-         [436 * scale, 1068 * scale], [546 * scale, 885 * scale], [723 * scale, 979 * scale],
-         [807 * scale, 750 * scale], [1000 * scale, 800 * scale], [1200 * scale, 930 * scale],
-         [1430 * scale, 876 * scale],
-         [1750 * scale, 687 * scale], [2044 * scale, 845 * scale], [2153 * scale, 755 * scale],
-         [2253 * scale, 820 * scale],
-         [2300 * scale, 738 * scale], [2407 * scale, 743 * scale], [2500 * scale, 590 * scale],
-         [2500 * scale, 1071 * scale]
-         ])
+red_forest = [(0, 1125), (0, 830), (71, 858), (250, 825),
+              (436, 1068), (546, 885), (723, 979),
+              (807, 750), (1000, 800), (1200, 930),
+              (1430, 876), (1750, 687), (2044, 845), (2153, 755),
+              (2253, 820), (2300, 738), (2407, 743), (2500, 590),
+              (2500, 1071)]
+smart_polygon(screen, scale, red, red_forest)  # red forest
 
 arc(screen, red, [1450 * scale, 687 * scale, 600 * scale, 550 * scale], math.pi / 2, math.pi * 0.9,
     int(200 * scale))
