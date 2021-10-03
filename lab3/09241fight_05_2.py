@@ -41,25 +41,25 @@ def print_bird(scr, scl, height, width, x, y, size, color):
 
 
 def sun(scr, scl, color, x, y, size):
+    # The size is the radius of the sun, but maybe something else will be added
     circle(scr, color, (x * scl, y * scl), (size * scl))
+
+
+def smart_polygon(scr, scl, color, points):
+    new_points = []
+    for i in points:
+        new_points.append((i[0] * scale, i[1] * scale))
+    polygon(scr, color, new_points)
 
 
 background(screen, scale, yellow_sky_up, pink_sky, yellow_sky_middle, pink_ground)
 sun(screen, scale, sun_color, 1192, 345, 144)
-
-# ораньжевые горы
-
-polygon(screen, orange,
-        [[0, 775 * scale], [30 * scale, 674 * scale], [514 * scale, 327 * scale],
-         [611 * scale, 357 * scale],
-         [644 * scale, 411 * scale], [653 * scale, 419 * scale], [958 * scale, 625 * scale],
-         [1123 * scale, 603 * scale], [1212 * scale, 647 * scale], [1331 * scale, 531 * scale],
-         [1450 * scale, 552 * scale],
-         [1500 * scale, 500 * scale], [1770 * scale, 265 * scale], [1868 * scale, 309 * scale],
-         [1980 * scale, 415 * scale],
-         [2071 * scale, 390 * scale], [2339 * scale, 473 * scale], [2325 * scale, 471 * scale],
-         [2500 * scale, 520 * scale]
-         ])
+mountains = [(0, 775), (30, 674), (514, 327), (611, 357), (644, 411),
+             (653, 419), (958, 625), (1123, 603), (1212, 647), (1331, 531),
+             (1450, 552), (1500, 500), (1770, 265), (1868, 309),
+             (1980, 415), (2071, 390), (2339, 473), (2325, 471),
+             (2500, 520)]
+smart_polygon(screen, scale, orange, mountains)  # mountains
 
 arc(screen, orange, [1750 * scale, 245 * scale, 100 * scale, 200 * scale], 0, math.pi, int(200 * scale))
 # тройное повторение с небольшим изменением координат потому что без него какая-то фигня с заливкой
