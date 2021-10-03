@@ -47,8 +47,7 @@ pygame.draw.polygon(screen, orange,
 
 pygame.draw.arc(screen, orange, [1750 * scale, 245 * scale, 100 * scale, 200 * scale], 0, math.pi, int(200 * scale))
 # тройное повторение с небольшим изменением координат потому что без него какая-то фигня с заливкой
-pygame.draw.arc(screen, orange, [
-    1750 * scale + 1, 245 * scale, 100 * scale, 200 * scale], 0, math.pi, int(200 * scale))
+pygame.draw.arc(screen, orange, [1750 * scale + 1, 245 * scale, 100 * scale, 200 * scale], 0, math.pi, int(200 * scale))
 pygame.draw.arc(screen, orange, [
     1750 * scale - 1, 245 * scale, 100 * scale, 200 * scale], 0, math.pi, int(200 * scale))
 
@@ -72,11 +71,11 @@ pygame.draw.arc(screen, red, [1450 * scale + 1, 687 * scale, 600 * scale, 550 * 
 pygame.draw.arc(screen, red, [1450 * scale - 1, 687 * scale, 600 * scale, 550 * scale], math.pi / 2, math.pi * 0.9,
                 int(200 * scale))
 
-pygame.draw.arc(screen, red, [60 * scale, 660 * scale, 400 * scale, (900) * scale], 0, math.pi * 5 / 6,
+pygame.draw.arc(screen, red, [60 * scale, 660 * scale, 400 * scale, 900 * scale], 0, math.pi * 5 / 6,
                 int(383 * scale))
-pygame.draw.arc(screen, red, [60 * scale + 1, 660 * scale, 400 * scale, (900) * scale], 0, math.pi * 5 / 6,
+pygame.draw.arc(screen, red, [60 * scale + 1, 660 * scale, 400 * scale, 900 * scale], 0, math.pi * 5 / 6,
                 int(383 * scale))
-pygame.draw.arc(screen, red, [60 * scale - 1, 660 * scale, 400 * scale, (900) * scale], 0, math.pi * 5 / 6,
+pygame.draw.arc(screen, red, [60 * scale - 1, 660 * scale, 400 * scale, 900 * scale], 0, math.pi * 5 / 6,
                 int(383 * scale))
 
 # темная земля на переднем плане
@@ -88,17 +87,17 @@ pygame.draw.polygon(screen, dark_ground,
                      ])
 
 
-def print_bird(height, width, Xc, Yc, size, color):
-    dY = height * size
-    dX = width * size
+def print_bird(height, width, x, y, size, color):
+    d_y = height * size
+    d_x = width * size
     r = 15 * size
-    pygame.draw.circle(screen, color, ((Xc - dX) * scale, (Yc - dY) * scale), (r * scale))
+    pygame.draw.circle(screen, color, ((x - d_x) * scale, (y - d_y) * scale), (r * scale))
     pygame.draw.polygon(screen, color,
-                        [[(Xc - dX + r / 2 ** 0.5) * scale - 1, (Yc - dY - r / 2 ** 0.5) * scale],
-                         [(Xc - dX - r / 2 ** 0.5) * scale + 3, (Yc - dY + r / 2 ** 0.5) * scale],
-                         [Xc * scale, Yc * scale],
-                         [(Xc + dX) * scale, (Yc - dY) * scale], [(Xc + dX / 2) * scale, (Yc - dY * 2 / 2) * scale],
-                         [Xc * scale, (Yc - dY / 2) * scale]
+                        [[(x - d_x + r / 2 ** 0.5) * scale - 1, (y - d_y - r / 2 ** 0.5) * scale],
+                         [(x - d_x - r / 2 ** 0.5) * scale + 3, (y - d_y + r / 2 ** 0.5) * scale],
+                         [x * scale, y * scale],
+                         [(x + d_x) * scale, (y - d_y) * scale], [(x + d_x / 2) * scale, (y - d_y * 2 / 2) * scale],
+                         [x * scale, (y - d_y / 2) * scale]
                          ])
 
 
