@@ -15,35 +15,37 @@ sun_color = (252, 238, 33)
 orange = (252, 152, 49)
 red = (172, 67, 52)
 pink_ground = (179, 134, 148)
-
 dark_ground = (48, 16, 38)
 dark_birds = (66, 33, 11)
 
 
-def background(scr, color1, color2, color3, color4):
-    rect(scr, color1, [0, 0, 2500 * scale, 349 * scale])
-    rect(scr, color2, [0, 349 * scale, 2500 * scale, 492 * scale])
-    rect(scr, color3, [0, 711 * scale, 2500 * scale, 354 * scale])
-    rect(scr, color4, [0, 1065 * scale, 2500 * scale, 834 * scale])
+def background(scr, scl, color1, color2, color3, color4):
+    rect(scr, color1, [0, 0, 2500 * scl, 349 * scl])
+    rect(scr, color2, [0, 349 * scl, 2500 * scl, 492 * scl])
+    rect(scr, color3, [0, 711 * scl, 2500 * scl, 354 * scl])
+    rect(scr, color4, [0, 1065 * scl, 2500 * scl, 834 * scl])
 
 
-def print_bird(height, width, x, y, size, color):
+def print_bird(scr, scl, height, width, x, y, size, color):
     d_y = height * size
     d_x = width * size
     r = 15 * size
-    circle(screen, color, ((x - d_x) * scale, (y - d_y) * scale), (r * scale))
-    polygon(screen, color,
-            [[(x - d_x + r / 2 ** 0.5) * scale - 1, (y - d_y - r / 2 ** 0.5) * scale],
-             [(x - d_x - r / 2 ** 0.5) * scale + 3, (y - d_y + r / 2 ** 0.5) * scale],
-             [x * scale, y * scale],
-             [(x + d_x) * scale, (y - d_y) * scale], [(x + d_x / 2) * scale, (y - d_y * 2 / 2) * scale],
-             [x * scale, (y - d_y / 2) * scale]
+    circle(scr, color, ((x - d_x) * scl, (y - d_y) * scl), (r * scl))
+    polygon(scr, color,
+            [[(x - d_x + r / 2 ** 0.5) * scl - 1, (y - d_y - r / 2 ** 0.5) * scl],
+             [(x - d_x - r / 2 ** 0.5) * scl + 3, (y - d_y + r / 2 ** 0.5) * scl],
+             [x * scl, y * scl],
+             [(x + d_x) * scl, (y - d_y) * scl], [(x + d_x / 2) * scl, (y - d_y * 2 / 2) * scl],
+             [x * scl, (y - d_y / 2) * scl]
              ])
 
 
-background(screen, yellow_sky_up, pink_sky, yellow_sky_middle, pink_ground)
+def sun(scr, scl, color, x, y, size):
+    circle(scr, color, (x * scl, y * scl), (size * scl))
 
-circle(screen, sun_color, (1192 * scale, 345 * scale), (144 * scale))
+
+background(screen, scale, yellow_sky_up, pink_sky, yellow_sky_middle, pink_ground)
+sun(screen, scale, sun_color, 1192, 345, 144)
 
 # ораньжевые горы
 
@@ -67,44 +69,42 @@ arc(screen, orange, [
 
 # красный лес
 polygon(screen, red,
-                    [[0, 1125 * scale], [0, 830 * scale], [71 * scale, 858 * scale], [250 * scale, 825 * scale],
-                     [436 * scale, 1068 * scale], [546 * scale, 885 * scale], [723 * scale, 979 * scale],
-                     [807 * scale, 750 * scale], [1000 * scale, 800 * scale], [1200 * scale, 930 * scale],
-                     [1430 * scale, 876 * scale],
-                     [1750 * scale, 687 * scale], [2044 * scale, 845 * scale], [2153 * scale, 755 * scale],
-                     [2253 * scale, 820 * scale],
-                     [2300 * scale, 738 * scale], [2407 * scale, 743 * scale], [2500 * scale, 590 * scale],
-                     [2500 * scale, 1071 * scale]
-                     ])
+        [[0, 1125 * scale], [0, 830 * scale], [71 * scale, 858 * scale], [250 * scale, 825 * scale],
+         [436 * scale, 1068 * scale], [546 * scale, 885 * scale], [723 * scale, 979 * scale],
+         [807 * scale, 750 * scale], [1000 * scale, 800 * scale], [1200 * scale, 930 * scale],
+         [1430 * scale, 876 * scale],
+         [1750 * scale, 687 * scale], [2044 * scale, 845 * scale], [2153 * scale, 755 * scale],
+         [2253 * scale, 820 * scale],
+         [2300 * scale, 738 * scale], [2407 * scale, 743 * scale], [2500 * scale, 590 * scale],
+         [2500 * scale, 1071 * scale]
+         ])
 
 arc(screen, red, [1450 * scale, 687 * scale, 600 * scale, 550 * scale], math.pi / 2, math.pi * 0.9,
-                int(200 * scale))
+    int(200 * scale))
 # тройное повторение с небольшим изменением координат потому что без него какая-то фигня с заливкой
 arc(screen, red, [1450 * scale + 1, 687 * scale, 600 * scale, 550 * scale], math.pi / 2, math.pi * 0.9,
-                int(200 * scale))
+    int(200 * scale))
 arc(screen, red, [1450 * scale - 1, 687 * scale, 600 * scale, 550 * scale], math.pi / 2, math.pi * 0.9,
-                int(200 * scale))
+    int(200 * scale))
 
 arc(screen, red, [60 * scale, 660 * scale, 400 * scale, 900 * scale], 0, math.pi * 5 / 6,
-                int(383 * scale))
+    int(383 * scale))
 arc(screen, red, [60 * scale + 1, 660 * scale, 400 * scale, 900 * scale], 0, math.pi * 5 / 6,
-                int(383 * scale))
+    int(383 * scale))
 arc(screen, red, [60 * scale - 1, 660 * scale, 400 * scale, 900 * scale], 0, math.pi * 5 / 6,
-                int(383 * scale))
+    int(383 * scale))
 
 # темная земля на переднем плане
 polygon(screen, dark_ground,
-                    [[0, 1666 * scale], [0, 857 * scale], [302 * scale, 937 * scale], [531 * scale, 1232 * scale],
-                     [813 * scale, 1580 * scale], [1171 * scale, 1637 * scale], [1579 * scale, 1408 * scale],
-                     [1689 * scale, 1463 * scale], [2089 * scale, 1400 * scale], [2500 * scale, 1000 * scale],
-                     [2500 * scale, 1666 * scale]
-                     ])
+        [[0, 1666 * scale], [0, 857 * scale], [302 * scale, 937 * scale], [531 * scale, 1232 * scale],
+         [813 * scale, 1580 * scale], [1171 * scale, 1637 * scale], [1579 * scale, 1408 * scale],
+         [1689 * scale, 1463 * scale], [2089 * scale, 1400 * scale], [2500 * scale, 1000 * scale],
+         [2500 * scale, 1666 * scale]
+         ])
 birds = [(960, 600, 1), (1185, 621, 1), (1185, 709, 1.05), (991, 778, 1), (1944, 1335, 1.5), (1985, 1206, 0.6),
          (1700, 1252, 0.8), (1568, 1127, 1.0)]
 for i in birds:
-    print_bird(50, 65, i[0], i[1], i[2], dark_birds)
-
-###
+    print_bird(screen, scale, 50, 65, i[0], i[1], i[2], dark_birds)
 
 pygame.display.update()
 clock = pygame.time.Clock()
