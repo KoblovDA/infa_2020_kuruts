@@ -27,6 +27,12 @@ def background(scr, scl, color1, color2, color3, color4):
 
 
 def bird(scr, scl, height, width, x, y, size, color):
+    """
+    Рисование птички
+    scr, scl - экран и масштаб
+    height, width, size - параметры, задающие относительную высоту, ширину птички и абсолютные размеры
+    x, y - координаты нижнего края птички
+    """
     d_y = height * size
     d_x = width * size
     r = 15 * size
@@ -41,11 +47,18 @@ def bird(scr, scl, height, width, x, y, size, color):
 
 
 def sun(scr, scl, color, x, y, size):
-    # The size is the radius of the sun, but maybe something else will be added
+    """
+    x, y - координаты центра Солнца
+    size - радиус Солнца
+    """
     circle(scr, color, (x * scl, y * scl), (size * scl))
 
 
 def smart_polygon(scr, scl, color, points):
+    """
+    points - изначальный массив точек, который с помощью scale переводится в многоугольник цвета color с относительным
+    параметром scl
+    """
     new_points = []
     for pairs in points:
         new_points.append((pairs[0] * scl, pairs[1] * scl))
@@ -53,6 +66,9 @@ def smart_polygon(scr, scl, color, points):
 
 
 def elliptic(scr, scl, color, rectangle, start_angle, stop_angle, size):
+    """
+    Переделка функции эллипса в pygame, решающая проблемы с заполнением
+    """
     for correct in range(-4, 4, 1):
         new_rectangle = []
         for num in rectangle:
