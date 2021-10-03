@@ -52,6 +52,14 @@ def smart_polygon(scr, scl, color, points):
     polygon(scr, color, new_points)
 
 
+def elliptic(scr, scl, color, rectangle, start_angle, stop_angle, size):
+    for correct in range(-4, 4, 1):
+        new_rectangle = []
+        for num in rectangle:
+            new_rectangle.append(num * scl + correct)
+        arc(scr, color, new_rectangle, start_angle, stop_angle, int(size * scale))
+
+
 mountains = [(0, 775), (30, 674), (514, 327), (611, 357), (644, 411),
              (653, 419), (958, 625), (1123, 603), (1212, 647), (1331, 531),
              (1450, 552), (1500, 500), (1770, 265), (1868, 309),
@@ -71,28 +79,10 @@ ground = [(0, 1666), (0, 857), (302, 937), (531, 1232),
 background(screen, scale, yellow_sky_up, pink_sky, yellow_sky_middle, pink_ground)
 sun(screen, scale, sun_color, 1192, 345, 144)
 smart_polygon(screen, scale, orange, mountains)  # mountains
-arc(screen, orange, [1750 * scale, 245 * scale, 100 * scale, 200 * scale], 0, math.pi, int(200 * scale))
-# тройное повторение с небольшим изменением координат потому что без него какая-то фигня с заливкой
-arc(screen, orange, [1750 * scale + 1, 245 * scale, 100 * scale, 200 * scale], 0, math.pi, int(200 * scale))
-arc(screen, orange, [
-    1750 * scale - 1, 245 * scale, 100 * scale, 200 * scale], 0, math.pi, int(200 * scale))
-
+elliptic(screen, scale, orange, [1750, 245, 100, 200], 0, math.pi, 200)
 smart_polygon(screen, scale, red, forest)  # red forest
-
-arc(screen, red, [1450 * scale, 687 * scale, 600 * scale, 550 * scale], math.pi / 2, math.pi * 0.9,
-    int(200 * scale))
-# тройное повторение с небольшим изменением координат потому что без него какая-то фигня с заливкой
-arc(screen, red, [1450 * scale + 1, 687 * scale, 600 * scale, 550 * scale], math.pi / 2, math.pi * 0.9,
-    int(200 * scale))
-arc(screen, red, [1450 * scale - 1, 687 * scale, 600 * scale, 550 * scale], math.pi / 2, math.pi * 0.9,
-    int(200 * scale))
-
-arc(screen, red, [60 * scale, 660 * scale, 400 * scale, 900 * scale], 0, math.pi * 5 / 6,
-    int(383 * scale))
-arc(screen, red, [60 * scale + 1, 660 * scale, 400 * scale, 900 * scale], 0, math.pi * 5 / 6,
-    int(383 * scale))
-arc(screen, red, [60 * scale - 1, 660 * scale, 400 * scale, 900 * scale], 0, math.pi * 5 / 6,
-    int(383 * scale))
+elliptic(screen, scale, red, [1450, 687, 600, 550], math.pi / 2, math.pi * 0.9, 200)
+elliptic(screen, scale, red, [60, 660, 400, 900], 0, math.pi * 5 / 6, 383)
 
 smart_polygon(screen, scale, dark_ground, ground)
 birds = [(960, 600, 1), (1185, 621, 1), (1185, 709, 1.05), (991, 778, 1), (1944, 1335, 1.5), (1985, 1206, 0.6),
